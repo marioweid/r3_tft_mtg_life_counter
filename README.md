@@ -64,9 +64,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Open Tasks
 
-- Buy a 3D-Printer and print a case
-- Cherry MX switches for better haptic and usability
-    - Design button layout:
+- [ ] Buy a 3D-Printer and print a case
+- [ ] Cherry MX switches for better haptic and usability
+    - [ ] Design button layout:
         - Life up/down
         - Mode selection
         - Reset button
