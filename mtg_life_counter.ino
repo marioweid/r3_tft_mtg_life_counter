@@ -174,7 +174,6 @@ void drawPanelCmdmg(uint8_t p) {
     tft.setCursor(x + 6, ry);
     tft.print("P");
     tft.print(attacker + 1);
-    //tft.print(">");
 
     // value
     Rect valBox = {x + 58, ry - 2, 36, 24};
@@ -214,7 +213,7 @@ void drawIconButton(const Rect &r, uint16_t fill, uint16_t border, uint8_t iconT
   int16_t cy = r.y + r.h / 2;
 
   switch(iconType) {
-    case 0: // Heart
+    case 0: // Life(Heart)
       tft.fillCircle(cx - 6, cy - 3, 6, WHITE);
       tft.fillCircle(cx + 6, cy - 3, 6, WHITE);
       tft.fillTriangle(cx - 12, cy - 3, cx + 12, cy - 3, cx, cy + 10, WHITE);
@@ -258,8 +257,6 @@ void drawAll() {
   tft.fillScreen(BLACK);
   drawSidebar();
   for (uint8_t p = 0; p < NUM_PLAYERS; p++) drawPanel(p);
-  // tft.drawLine(SIDEBAR_W + PANEL_W, 0, SIDEBAR_W + PANEL_W, 240, GRAY);
-  // tft.drawLine(SIDEBAR_W, 120, 320, 120, GRAY);
   tft.drawLine(SIDEBAR_W + PANEL_W + gap*2, 0, SIDEBAR_W + PANEL_W + gap*2, 240, GRAY);
   tft.drawLine(SIDEBAR_W, 120, 320, 120, GRAY);
 }
@@ -327,10 +324,10 @@ void loop() {
     // --- Life or Poison Mode ---
     if (currentMode == MODE_LIFE || currentMode == MODE_POISON) {
         bool changed = false;
-        if (x < x0 + PANEL_W / 2) {  // Left half = minus
+        if (x < x0 + PANEL_W / 2) {  // Left half = <
             if (currentMode == MODE_LIFE)      { lifeT[panel]--; changed = true; }
             else if (currentMode == MODE_POISON && poisonT[panel] > 0) { poisonT[panel]--; changed = true; }
-        } else {                       // Right half = plus
+        } else {                       // Right half = >
             if (currentMode == MODE_LIFE)      { lifeT[panel]++; changed = true; }
             else if (currentMode == MODE_POISON && poisonT[panel] < 10) { poisonT[panel]++; changed = true; }
         }
